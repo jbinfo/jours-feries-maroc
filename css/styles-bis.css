@@ -1,4 +1,13 @@
 
+.navbar-brand {
+    margin-right: 10px;
+}
+.navbar-brand + span {
+    margin-right: 10px;
+}
+.navbar-brand + span.rtl {
+    margin-left: 10px;
+}
 #mainNav .navbar-brand:hover, #mainNav .navbar-brand:active {
     color: #c70514;
 }
@@ -23,4 +32,11 @@
 }
 .calendar .calendar-header table th:hover {
     background: none;
+}
+.bg-gradient-primary-to-secondary {
+    background: linear-gradient(45deg, #a80000, #0b6500) !important;
+}
+.accordion-button.me-auto::after {
+    margin-right: auto;
+    margin-left: 0;
 }
