@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang }}"{% if page.lang == 'ar' %} dir="rtl"{% endif %}>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="{{ site.description[page.lang] }}" />
+        <meta name="author" content="" />
+        <title>{{ site.name }} | {{ site.title[page.lang] }}</title>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🇲🇦</text></svg>">
+        <link rel="canonical" href="https://www.feries.ma/">
+        <meta property="og:locale" content="{{ site.locales[page.lang] }}">
+        <meta property="og:title" content="{{ site.title[page.lang] }} - {{ site.name }}">
+        <meta property="og:description" content="{{ site.description[page.lang] }}">
+        <meta property="og:url" content="https://www.feries.ma/">
+        <meta property="og:site_name" content="{{ site.name }} | {{ site.slogan[page.lang] }}">
+        
+        <!-- Bootstrap icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        <link href="https://unpkg.com/js-year-calendar@2.0.0/dist/js-year-calendar.min.css" rel="stylesheet" />
+        
+        <!-- Google fonts-->
+        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="/css/styles.css" rel="stylesheet" />
+        <link href="/css/styles-bis.css" rel="stylesheet" />
+        {% if jekyll.environment != "development" %}
+        <!-- Google tag (gtag.js) -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-E1ZP7C5QDY"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-E1ZP7C5QDY');
+        </script>
+        {% endif %}
+    </head>
+    <body id="page-top">
+
+        {% include navigation.html %}
+
+        {{ content }}
+        
+        {% include footer.html %}
+        
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/js-year-calendar@latest/dist/js-year-calendar.min.js"></script>
+        {% if page.lang != 'en' %}
+        <script src="/js/js-year-calendar.{{ page.lang }}.js"></script>
+        {% endif %}
+        
+        {% assign feries = site.feries | where:"lang",page.lang %}
+        <script>
+            const holidays = [
+                {% for item in feries %}{"startDate": new Date('{{ item.startDate }}'), "endDate": new Date('{{ item.endDate }}'), "name": "{{ item.title }}", "description": "{{ item.description }}", "url": "{{ item.url }}"}{% unless forloop.last %},{% endunless %}{% endfor %}
+            ];
+        </script>
+        <!-- Core theme JS-->
+        <script src="/js/scripts.js"></script>
+    </body>
+</html>

@@ -1,0 +1,77 @@
+---
+layout: default
+lang: ar
+---
+<section class="bg-light">
+    <div class="bg"></div>
+    <div class="container px-5">
+        <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
+            <p>
+                <h1 class="titre gy-4 g-4">العطل الرسمية لسنتي 2024 / 2025 بالمغرب</h1>
+            </p>
+            <div data-provide="calendar" class="calendar"></div>
+        </div>
+        <hr>
+
+        {% assign todayDate = 'now' | date: '%s' %}
+        {% assign currentYear =  "now" | date: "%Y" %} 
+        {% assign nextYear = currentYear | plus: 1 %}
+        {% assign feries = site.feries | where:"lang",page.lang | sort: "startDate" %}
+        <div class="accordion accordion-flush d-none" id="accordion_{{ currentYear }}">
+            {% for item in feries %}
+                {% if item.path contains currentYear %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-heading-{{ forloop.index }}">
+                        <button class="accordion-button collapsed me-auto" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-{{ forloop.index }}" aria-expanded="false" aria-controls="flush-collapse-{{ forloop.index }}">
+                            <strong>{{ item.title }}</strong>
+                            {% assign startDate = item.startDate | date: '%s' %}
+                            {% if startDate > todayDate %}
+                                <i class="bi bi-hourglass-top me-2 opacity-50"></i>
+                            {% else %}
+                                <i class="bi bi-check me-2 opacity-50"></i>
+                            {% endif %}
+                        </button>
+                        </h2>
+                        <div id="flush-collapse-{{ forloop.index }}" class="accordion-collapse collapse" aria-labelledby="flush-heading-{{ forloop.index }}" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p>
+                                    <span class="badge bg-success">من: {{ item.startDate | date: "%d / %m / %Y" }}</span>
+                                    <span class="badge bg-dark">إلى: {{ item.endDate | date: "%d / %m / %Y" }}</span>
+                                </p>
+                                {{ item.description }}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <div class="accordion accordion-flush" id="accordion_{{ nextYear }}">
+            {% for item in feries %}
+                {% if item.path contains nextYear %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="flush-heading-{{ forloop.index }}">
+                        <button class="accordion-button collapsed me-auto" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-{{ forloop.index }}" aria-expanded="false" aria-controls="flush-collapse-{{ forloop.index }}">
+                            <strong>{{ item.title }}</strong>
+                            {% assign startDate = item.startDate | date: '%s' %}
+                            {% if startDate > todayDate %}
+                                <i class="bi bi-hourglass-top me-2 opacity-50"></i>
+                            {% else %}
+                                <i class="bi bi-check me-2 opacity-50"></i>
+                            {% endif %}
+                        </button>
+                        </h2>
+                        <div id="flush-collapse-{{ forloop.index }}" class="accordion-collapse collapse" aria-labelledby="flush-heading-{{ forloop.index }}" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <p>
+                                    <span class="badge bg-success">من: {{ item.startDate | date: "%d / %m / %Y" }}</span>
+                                    <span class="badge bg-dark">إلى: {{ item.endDate | date: "%d / %m / %Y" }}</span>
+                                </p>
+                                {{ item.description }}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
