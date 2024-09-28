@@ -20,12 +20,12 @@
 
 name: Feries.ma
 title: 
-  ar: تقويم العطلات الرسمية لسنتي 2024 / 2025 في المغرب
+  ar: لائحة العطل الرسمية لسنتي 2024 / 2025 في المغرب
   en: Public holiday calendar for 2024 / 2025 in Morocco
-  fr: Calendrier des jours fériés pour 2024 / 2025 au Maroc 🇲🇦
+  fr: Calendrier des jours fériés pour 2024 / 2025 au Maroc
 email: your-email@example.com
 description: 
-  ar: قام موقع Feries.ma بإعداد قائمة كاملة للعطلات الرسمية في المغرب لسنة 2024/2025.
+  ar: قام موقع Feries.ma بإعداد لائحة العطل الرسمية في المغرب لسنة 2024/2025.
   en: Feries.ma has drawn up the complete calendar of public holidays in Morocco for 2024 / 2025.
   fr: Feries.ma a dressé le calendrier complet des jours fériés au Maroc pour 2024 / 2025.
 slogan:
@@ -50,7 +50,7 @@ default_language: fr
 
 collections:
   feries:
-    output: false
+    output: true
 
 plugins:
   - jekyll-sitemap

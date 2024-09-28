@@ -1,0 +1,130 @@
+{%- assign todayDate = 'now' | date: '%s' -%}
+{%- assign currentYear =  "now" | date: "%Y" -%} 
+{%- assign nextYear = currentYear | plus: 1 -%}
+{%- assign feries = site.feries | where:"lang",page.lang | sort: "startDate" -%}
+<div class="accordion accordion-flush d-none" id="accordion_{{ currentYear }}">
+    {%- for item in feries -%}
+        {%- if item.path contains currentYear -%}
+            {%- unless item.name contains 'index' -%}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-heading-{{ forloop.index }}">
+                        <button class="accordion-button collapsed {% if page.lang == 'ar' %}me-auto{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-{{ forloop.index }}" aria-expanded="false" aria-controls="flush-collapse-{{ forloop.index }}">
+                            {{ item.title }}
+
+                            {%- assign startDate = item.startDate | date: '%s' -%}
+                            {%- if startDate > todayDate -%}
+                                <i class="bi bi-hourglass-top ms-2 opacity-50"></i>
+                            {%- else -%}
+                                <i class="bi bi-check ms-2 opacity-50"></i>
+                            {%- endif -%}
+                        </button>
+                    </h2>
+                    <div id="flush-collapse-{{ forloop.index }}" class="accordion-collapse collapse" aria-labelledby="flush-heading-{{ forloop.index }}" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <p>
+                                <span class="badge bg-success">
+                                    {%- if page.lang == 'fr' -%}
+                                        {% if item.startDate != item.endDate %}Début: {% endif %}<time datetime="{{ item.startDate }}">{{ item.startDate | date: "%d / %m / %Y" }}</time>
+                                    {%- endif -%}
+                                    {%- if page.lang == 'en' -%}
+                                        {% if item.startDate != item.endDate %}From: {% endif %}<time datetime="{{ item.startDate }}">{{ item.startDate | date: "%b %d, %Y" }}</time>
+                                    {%- endif -%}
+                                    {%- if page.lang == 'ar' -%}
+                                        {% if item.startDate != item.endDate %}من: {% endif %}<time datetime="{{ item.startDate }}">{{ item.startDate | date: "%d / %m / %Y" }}</time>
+                                    {%- endif -%}
+                                </span>
+                                {% if item.startDate != item.endDate -%}
+                                    <span class="badge bg-dark">
+                                        {%- if page.lang == 'fr' -%}
+                                            Fin: <time datetime="{{ item.endDate }}">{{ item.endDate | date: "%d / %m / %Y" }}</time>
+                                        {%- endif -%}
+                                        {%- if page.lang == 'en' -%}
+                                            To: <time datetime="{{ item.endDate }}">{{ item.endDate | date: "%b %d, %Y" }}</time>
+                                        {%- endif -%}
+                                        {%- if page.lang == 'ar' -%}
+                                            إلى: <time datetime="{{ item.endDate }}">{{ item.endDate | date: "%d / %m / %Y" }}</time>
+                                        {%- endif -%}
+                                    </span>
+                                {% endif -%}
+                            </p>
+                            {{ item.description }}
+                            <a href="{{ item.url }}" title="{{ item.title }} {{ item.endDate | date: '%Y' }}" class=""><small>
+                                {%- if page.lang == 'fr' -%}
+                                    Plus
+                                {%- endif -%}
+                                {%- if page.lang == 'en' -%}
+                                    More
+                                {%- endif -%}
+                                {%- if page.lang == 'ar' -%}
+                                    مزيد
+                                {%- endif -%}
+                            </small></a>
+                        </div>
+                    </div>
+                </div>
+            {%- endunless -%}
+        {%- endif -%}
+    {%- endfor -%}
+</div>
+<div class="accordion accordion-flush" id="accordion_{{ nextYear }}">
+    {%- for item in feries -%}
+        {%- if item.path contains nextYear -%}
+            {%- unless item.name contains 'index' -%}
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-heading-{{ forloop.index }}">
+                        <button class="accordion-button collapsed {% if page.lang == 'ar' %}me-auto{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-{{ forloop.index }}" aria-expanded="false" aria-controls="flush-collapse-{{ forloop.index }}">
+                            {{ item.title }}
+
+                            {%- assign startDate = item.startDate | date: '%s' -%}
+                            {%- if startDate > todayDate -%}
+                                <i class="bi bi-hourglass-top ms-2 opacity-50"></i>
+                            {%- else -%}
+                                <i class="bi bi-check ms-2 opacity-50"></i>
+                            {%- endif -%}
+                        </button>
+                    </h2>
+                    <div id="flush-collapse-{{ forloop.index }}" class="accordion-collapse collapse" aria-labelledby="flush-heading-{{ forloop.index }}" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <p>
+                                <span class="badge bg-success">
+                                    {%- if page.lang == 'fr' -%}
+                                        Début: <time datetime="{{ item.startDate }}">{{ item.startDate | date: "%d / %m / %Y" }}</time>
+                                    {%- endif -%}
+                                    {%- if page.lang == 'en' -%}
+                                        From: <time datetime="{{ item.startDate }}">{{ item.startDate | date: "%b %d, %Y" }}</time>
+                                    {%- endif -%}
+                                    {%- if page.lang == 'ar' -%}
+                                        من: <time datetime="{{ item.startDate }}">{{ item.startDate | date: "%d / %m / %Y" }}</time>
+                                    {%- endif -%}
+                                </span>
+                                <span class="badge bg-dark">
+                                    {%- if page.lang == 'fr' -%}
+                                        Fin: {<time datetime="{{ item.endDate }}">{{ item.endDate | date: "%d / %m / %Y" }}</time>
+                                    {%- endif -%}
+                                    {%- if page.lang == 'en' -%}
+                                        To: <time datetime="{{ item.endDate }}">{{ item.endDate | date: "%b %d, %Y" }}</time>
+                                    {%- endif -%}
+                                    {%- if page.lang == 'ar' -%}
+                                        إلى: <time datetime="{{ item.endDate }}">{{ item.endDate | date: "%d / %m / %Y" }}</time>
+                                    {%- endif -%}
+                                </span>
+                            </p>
+                            {{ item.description }}
+                            <a href="{{ item.url }}" title="{{ item.title }} {{ item.endDate | date: '%Y' }}" class=""><small>
+                                {%- if page.lang == 'fr' -%}
+                                    Plus
+                                {%- endif -%}
+                                {%- if page.lang == 'en' -%}
+                                    More
+                                {%- endif -%}
+                                {%- if page.lang == 'ar' -%}
+                                    مزيد
+                                {%- endif -%}
+                            </small></a>
+                        </div>
+                    </div>
+                </div>
+            {%- endunless -%}
+        {%- endif -%}
+    {%- endfor -%}
+</div>

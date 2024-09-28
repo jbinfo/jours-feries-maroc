@@ -30,66 +30,68 @@ $(function() {
         });
     });
 
-    var currentYear = new Date().getFullYear();
-    calendar = new Calendar('.calendar', {
-        dataSource: holidays,
-        language: document.documentElement.lang,
-        style: 'background',
-        /*displayHeader: false,*/
-        minDate: new Date(currentYear, 0, 1),
-        maxDate: new Date(currentYear + 1, 11, 31),
-        /*dataSource: function({year}) {
-            // Load data from GitHub API
-            return fetch('/data/holidays.json')
-                .then(result => result.json())
-                .then(result => {
-                    if (result.items) {
-                        return result.items.map(r => ({
-                            startDate: new Date(r.startDate),
-                            endDate: new Date(r.endDate),
-                            name: r.name[e.calendar.options.language],
-                            description: r.description[e.calendar.options.language],
-                        }));
-                    }
+    if (holidays.length > 0) {
+        var currentYear = new Date().getFullYear();
+        calendar = new Calendar('.calendar', {
+            dataSource: holidays,
+            language: document.documentElement.lang,
+            style: 'background',
+            /*displayHeader: false,*/
+            minDate: new Date(currentYear, 0, 1),
+            maxDate: new Date(currentYear + 1, 11, 31),
+            /*dataSource: function({year}) {
+                // Load data from GitHub API
+                return fetch('/data/holidays.json')
+                    .then(result => result.json())
+                    .then(result => {
+                        if (result.items) {
+                            return result.items.map(r => ({
+                                startDate: new Date(r.startDate),
+                                endDate: new Date(r.endDate),
+                                name: r.name[e.calendar.options.language],
+                                description: r.description[e.calendar.options.language],
+                            }));
+                        }
+                        
+                        return [];
+                    })
+                ;
+            },*/
+            yearChanged: function(e) {
+                $('.accordion').toggleClass('d-none');
+            },
+            mouseOnDay: function(e) {
+                if(e.events.length > 0) {
+                    var content = '';
                     
-                    return [];
-                })
-            ;
-        },*/
-        yearChanged: function(e) {
-            $('.accordion').toggleClass('d-none');
-        },
-        mouseOnDay: function(e) {
-            if(e.events.length > 0) {
-                var content = '';
+                    for(var i in e.events) {
+                        content += '<div class="event-tooltip-content">'
+                                        + '<div class="event-name" style="font-weight: bold;color:' + e.events[i].color + '"><strong>' + e.events[i].name + '</strong></div>'
+                                        + '<div class="event-description"><small>' + e.events[i].description + '</small></div>'
+                                    + '</div>';
+                    }
                 
-                for(var i in e.events) {
-                    content += '<div class="event-tooltip-content">'
-                                    + '<div class="event-name" style="font-weight: bold;color:' + e.events[i].color + '"><strong>' + e.events[i].name + '</strong></div>'
-                                    + '<div class="event-description"><small>' + e.events[i].description + '</small></div>'
-                                + '</div>';
+                    $(e.element).popover({ 
+                        trigger: 'manual',
+                        container: 'body',
+                        html:true,
+                        content: content
+                    });
+                    
+                    $(e.element).popover('show');
                 }
-            
-                $(e.element).popover({ 
-                    trigger: 'manual',
-                    container: 'body',
-                    html:true,
-                    content: content
-                });
-                
-                $(e.element).popover('show');
+            },
+            mouseOutDay: function(e) {
+                if(e.events.length > 0) {
+                    $(e.element).popover('hide');
+                }
+            },
+            renderEnd: function(e) {
+                if (e.calendar.options.language == 'ar') {
+                    $(e.target).find('.calendar-header').attr('dir', 'rtl');
+                    $(e.target).find('.months-container').attr('dir', 'rtl');
+                }
             }
-        },
-        mouseOutDay: function(e) {
-            if(e.events.length > 0) {
-                $(e.element).popover('hide');
-            }
-        },
-        renderEnd: function(e) {
-            if (e.calendar.options.language == 'ar') {
-                $(e.target).find('.calendar-header').attr('dir', 'rtl');
-                $(e.target).find('.months-container').attr('dir', 'rtl');
-            }
-        }
-    });
+        });
+    }
 });
