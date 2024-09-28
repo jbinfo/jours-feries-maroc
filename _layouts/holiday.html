@@ -36,6 +36,10 @@ layout: default
                         {%- endif -%}
                     {%- endif -%}
                 </p>
+
+                <p>
+                    {{ page.description }}
+                </p>
                 
                 {%- for static_file in site.static_files -%}
                     {%- if static_file.path contains page.slug -%}
