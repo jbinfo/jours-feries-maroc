@@ -5,7 +5,8 @@
 <div class="accordion accordion-flush d-none" id="accordion_{{ currentYear }}">
     {%- for item in feries -%}
         {%- if item.path contains currentYear -%}
-            {%- unless item.name contains 'index' -%}
+            {%- if item.name contains 'index' -%}
+            {%- else -%}
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-heading-{{ forloop.index }}">
                         <button class="accordion-button collapsed {% if page.lang == 'ar' %}me-auto{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-{{ forloop.index }}" aria-expanded="false" aria-controls="flush-collapse-{{ forloop.index }}">
@@ -62,14 +63,15 @@
                         </div>
                     </div>
                 </div>
-            {%- endunless -%}
+            {%- endif -%}
         {%- endif -%}
     {%- endfor -%}
 </div>
 <div class="accordion accordion-flush" id="accordion_{{ nextYear }}">
     {%- for item in feries -%}
         {%- if item.path contains nextYear -%}
-            {%- unless item.name contains 'index' -%}
+            {%- if item.name contains 'index' -%}
+            {%- else -%}
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-heading-{{ forloop.index }}">
                         <button class="accordion-button collapsed {% if page.lang == 'ar' %}me-auto{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-{{ forloop.index }}" aria-expanded="false" aria-controls="flush-collapse-{{ forloop.index }}">
@@ -124,7 +126,7 @@
                         </div>
                     </div>
                 </div>
-            {%- endunless -%}
+            {%- endif -%}
         {%- endif -%}
     {%- endfor -%}
 </div>
