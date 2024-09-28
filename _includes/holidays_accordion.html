@@ -4,6 +4,7 @@
 {%- assign feries = site.feries | where:"lang",page.lang | sort: "startDate" -%}
 <div class="accordion accordion-flush d-none" id="accordion_{{ currentYear }}">
     {%- for item in feries -%}
+        {{ item.name }}
         {%- if item.path contains currentYear -%}
             {%- if item.name contains 'index' -%}
             {%- else -%}
