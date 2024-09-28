@@ -4,9 +4,8 @@
 {%- assign feries = site.feries | where:"lang",page.lang | sort: "startDate" -%}
 <div class="accordion accordion-flush d-none" id="accordion_{{ currentYear }}">
     {%- for item in feries -%}
-        {{ item.name }}
         {%- if item.path contains currentYear -%}
-            {%- if item.name contains 'index' -%}
+            {%- if item.accordion == false -%}
             {%- else -%}
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-heading-{{ forloop.index }}">
@@ -71,7 +70,7 @@
 <div class="accordion accordion-flush" id="accordion_{{ nextYear }}">
     {%- for item in feries -%}
         {%- if item.path contains nextYear -%}
-            {%- if item.name contains 'index' -%}
+            {%- if item.accordion == false -%}
             {%- else -%}
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-heading-{{ forloop.index }}">
