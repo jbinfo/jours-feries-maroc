@@ -31,6 +31,7 @@ $(function() {
     });
 
     if (holidays.length > 0) {
+        Calendar.colors = ['#83CDFB', '#9CB703', '#F5BB00', '#FF8A7A', '#B56CE2', '#45A597'];
         var currentYear = new Date().getFullYear();
         calendar = new Calendar('.calendar', {
             dataSource: holidays,

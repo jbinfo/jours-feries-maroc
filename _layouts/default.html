@@ -8,7 +8,7 @@
         <title>
             {%- if page.url == '/ar/' -%}
                 {{ site.name }} | {{ site.title[page.lang] }}
-            {%- elsif page.url == '/' or page.url == '/en/' -%}
+            {%- elsif page.url == '/' or page.url == '/fr/' or page.url == '/en/' -%}
                 {{ site.title[page.lang] }} | {{ site.name }}
             {%- else -%}
                 {{ page.title }}{%- if page.startDate %} {{ page.startDate | date: '%Y' }}{%- endif %} - {{ site.name }}
