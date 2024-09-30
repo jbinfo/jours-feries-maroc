@@ -8,7 +8,7 @@ startDate: 2024-11-06
 endDate: 2024-11-06
 ---
 
-## The Green March: A Pivotal Moment in Moroccan History
+### The Green March: A Pivotal Moment in Moroccan History
 
 The Green March, a non-violent protest that took place in November 1975, was a pivotal moment in Moroccan history. Tens of thousands of Moroccan civilians, mostly unarmed, crossed the Sahara border to reclaim the territory, which had been under Spanish colonial rule. This peaceful demonstration, coupled with diplomatic efforts, led to the eventual withdrawal of Spanish forces and Morocco's assumption of control over the region. 
 
