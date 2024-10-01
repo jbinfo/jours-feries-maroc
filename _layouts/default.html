@@ -26,7 +26,7 @@
         <meta property="og:title" content="
             {%- if page.url == '/ar/' -%}
                 {{ site.name }} | {{ site.title[page.lang] }}
-            {%- elsif page.url == '/' or page.url == '/en/' -%}
+            {%- elsif page.url == '/' or page.url == '/fr/' or page.url == '/en/' -%}
                 {{ site.title[page.lang] }} | {{ site.name }}
             {%- else -%}
                 {{ page.title }}{%- if page.startDate %} {{ page.startDate | date: '%Y' }}{%- endif %} - {{ site.name }}
@@ -49,14 +49,18 @@
         <link href="/css/styles.css" rel="stylesheet" />
         <link href="/css/styles-bis.css" rel="stylesheet" />
     </head>
-    <body id="page-top">
-
+    <body id="page-top" class="d-flex flex-column min-vh-100 bg-light">
         {%- include navigation.html -%}
-
-        {{ content }}
         
+        <main role="main" class="flex-shrink-0">
+            <div class="bg"></div>
+            <section>
+                {{- content -}}
+            </section>
+        </main>
+            
         {%- include footer.html -%}
-        
+    
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>

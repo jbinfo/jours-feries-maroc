@@ -1,4 +1,3 @@
-
 .navbar-brand {
     margin-right: 10px;
 }
@@ -15,7 +14,7 @@
     position: relative;
     z-index: 1;
 }
-.bg-light .bg {
+main .bg {
     position: absolute;
     z-index: -1;
     top: 0;
@@ -23,9 +22,7 @@
     left: 0;
     right: 0;
     background: url(../assets/img/bg-min.jpg) center center;
-    opacity: 0.04;
-    width: 100%;
-    height: 100%;
+    opacity: 0.03;
 }
 .calendar .months-container .month-container {
     padding-bottom: 14px;
