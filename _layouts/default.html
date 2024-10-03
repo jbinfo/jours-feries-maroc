@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ page.lang }}"{%- if page.lang == 'ar' -%} dir="rtl"{%- endif -%}>
+<html lang="{{ page.lang }}"{%- if page.lang == 'ar' %} dir="rtl"{%- endif -%}>
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
@@ -10,8 +10,12 @@
                 {{ site.name }} | {{ site.title[page.lang] }}
             {%- elsif page.url == '/' or page.url == '/fr/' or page.url == '/en/' -%}
                 {{ site.title[page.lang] }} | {{ site.name }}
-            {%- else -%}
-                {{ page.title }}{%- if page.startDate %} {{ page.startDate | date: '%Y' }}{%- endif %} - {{ site.name }}
+            {%- else -%}                
+                {%- if page.lang == 'ar' -%}
+                    {{ site.name }} - {{ page.title }}{%- if page.startDate %} {{ page.startDate | date: '%Y' }}{%- endif %}
+                {%- else -%}
+                    {{ page.title }}{%- if page.startDate %} {{ page.startDate | date: '%Y' }}{%- endif %} - {{ site.name }}
+                {%- endif -%}
             {%- endif -%}
         </title>
         <link rel="preconnect" href="//cdn.jsdelivr.net" crossorigin>
@@ -20,6 +24,23 @@
         <link rel="preconnect" href="//www.googletagmanager.com" crossorigin>
         <link rel="preconnect" href="//cdnjs.cloudflare.com" crossorigin>
         <link rel="preconnect" href="//cdn.jsdelivr.net" crossorigin>
+        <link rel="preconnect" href="//fonts.gstatic.com" crossorigin>
+
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" as="style" />
+        <link rel="preload" href="https://unpkg.com/js-year-calendar@2.0.0/dist/js-year-calendar.min.css" as="style" />
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" as="style" />
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" as="style" />
+        <link rel="preload" href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" as="style" />
+        <link rel="preload" href="/css/styles.css" as="style" />
+        <link rel="preload" href="/css/styles-bis.css" as="style" />
+        <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" as="script" />
+        <link rel="preload" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" as="script" />
+        <link rel="preload" href="https://unpkg.com/js-year-calendar@2.0.0/dist/js-year-calendar.min.js" as="script" />
+        
+        {%- if page.lang != 'en' -%}
+            <link rel="preload" href="/js/js-year-calendar.{{ page.lang }}.js" as="script" />
+        {%- endif -%}
+
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🇲🇦</text></svg>">
         <link rel="canonical" href="{{ site.url }}{{ page.url }}">
         <meta property="og:locale" content="{{ site.locales[page.lang] }}">
@@ -29,10 +50,21 @@
             {%- elsif page.url == '/' or page.url == '/fr/' or page.url == '/en/' -%}
                 {{ site.title[page.lang] }} | {{ site.name }}
             {%- else -%}
-                {{ page.title }}{%- if page.startDate %} {{ page.startDate | date: '%Y' }}{%- endif %} - {{ site.name }}
+                {%- if page.lang == 'ar' -%}
+                    {{ site.name }} - {{ page.title }}{%- if page.startDate %} {{ page.startDate | date: '%Y' }}{%- endif %}
+                {%- else -%}
+                    {{ page.title }}{%- if page.startDate %} {{ page.startDate | date: '%Y' }}{%- endif %} - {{ site.name }}
+                {%- endif -%}
             {%- endif -%}
         ">
         <meta property="og:description" content="{%- if page.description -%}{{ page.description }}{%- else -%}{{ site.description[page.lang] }}{%- endif -%}">
+        {%- for static_file in site.static_files -%}
+            {%- if static_file.path contains page.slug -%}
+                <meta property="og:image" content="{{ site.url }}{{ static_file.path }}" />
+                <link rel="preload" href="{{ site.url }}{{ static_file.path }}" as="image" />
+            {%- endif -%}
+        {%- endfor -%}
+        
         <meta property="og:url" content="{{ site.url }}{{ page.url }}">
         <meta property="og:site_name" content="{{ site.slogan[page.lang] }} - {{ site.name }}">
         
@@ -41,7 +73,7 @@
         <link href="https://unpkg.com/js-year-calendar@2.0.0/dist/js-year-calendar.min.css" rel="stylesheet" />
         
         <!-- Google fonts-->
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
+        
         <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,600;1,600&amp;display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,500;0,600;0,700;1,300;1,500;1,600;1,700&amp;display=swap" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,400;1,400&amp;display=swap" rel="stylesheet" />
@@ -61,24 +93,33 @@
             
         {%- include footer.html -%}
     
-        <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
         <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://unpkg.com/js-year-calendar@2.0.0/dist/js-year-calendar.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" defer></script>
+        <script src="https://unpkg.com/js-year-calendar@2.0.0/dist/js-year-calendar.min.js" defer></script>
         {%- if page.lang != 'en' -%}
-        <script src="/js/js-year-calendar.{{ page.lang }}.js"></script>
+            <script src="/js/js-year-calendar.{{ page.lang }}.js" defer></script>
         {%- endif -%}
         
         <script>
             const holidays = [
                 {%- if page.url == '/fr/' or page.url == '/ar/' or page.url == '/' or page.url == '/en/' -%}
                     {%- assign feries = site.feries | where:"lang",page.lang -%}
-                    {%- for item in feries -%}{"startDate": new Date('{{ item.startDate }}'), "endDate": new Date('{{ item.endDate }}'), "name": "{{ item.title }}", "description": "{{ item.description }}", "url": "{{ item.url }}"}{%- unless forloop.last -%},{%- endunless -%}{%- endfor -%}
+                    {%- for item in feries -%}
+                        {%- assign publicEndDate = '""' -%}
+                        
+                        {%- if item.publicEndDate -%}
+                            {%- assign publicEndDate = "new Date('" | append: item.endDate | append: "')" -%}
+                        {%- endif -%}
+
+                        {"startDate": new Date('{{ item.startDate }}'), "endDate": new Date('{{ item.endDate }}'), "publicEndDate": {{ publicEndDate }}, "name": "{{ item.title }}", "description": "{{ item.description }}", "url": "{{ item.url }}"}
+                        {%- unless forloop.last -%},{%- endunless -%}
+                    {%- endfor -%}
                 {%- endif -%}
             ];
         </script>
         <!-- Core theme JS-->
-        <script src="/js/scripts.js"></script>
+        <script src="/js/scripts.js" defer></script>
         {%- if jekyll.environment != "development" -%}
         <!-- Google tag (gtag.js) -->
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-E1ZP7C5QDY"></script>
