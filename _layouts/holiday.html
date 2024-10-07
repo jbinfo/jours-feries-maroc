@@ -41,7 +41,7 @@ layout: default
             
             {%- for static_file in site.static_files -%}
                 {%- if static_file.path contains page.slug -%}
-                    <img src="{{ static_file.path }}" class="img-fluid mb-3" alt="{{ page.title }}">
+                    <img src="{{ static_file.path }}" class="img-fluid mb-3" alt="{{ page.title }} {{ page.startDate | date: '%Y' }}">
                 {%- endif -%}
             {%- endfor -%}
             

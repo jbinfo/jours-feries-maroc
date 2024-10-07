@@ -1,0 +1,20 @@
+<script>
+    const holidays = [
+        {%- assign feries = site.feries | where:"lang",page.lang -%}
+        {%- for item in feries -%}
+            {%- assign publicEndDate = '""' -%}
+            {%- assign privateEndDate = '""' -%}
+
+            {%- if item.publicEndDate -%}
+                {%- assign publicEndDate = "new Date('" | append: item.publicEndDate | append: "')" -%}
+            {%- endif -%}
+
+            {%- if item.privateEndDate -%}
+                {%- assign privateEndDate = "new Date('" | append: item.privateEndDate | append: "')" -%}
+            {%- endif -%}
+
+            {"startDate": new Date('{{ item.startDate }}'), "endDate": new Date('{{ item.endDate }}'), "privateEndDate": {{ privateEndDate }}, "publicEndDate": {{ publicEndDate }}, "name": "{{ item.title }}", "description": "{{ item.description }}", "url": "{{ item.url }}"}
+            {%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+    ];
+</script>

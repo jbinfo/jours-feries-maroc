@@ -37,29 +37,12 @@ $(function() {
             dataSource: holidays,
             language: document.documentElement.lang,
             style: 'background',
-            /*displayHeader: false,*/
-            minDate: new Date(currentYear, 0, 1),
-            maxDate: new Date(currentYear + 1, 11, 31),
-            /*dataSource: function({year}) {
-                // Load data from GitHub API
-                return fetch('/data/holidays.json')
-                    .then(result => result.json())
-                    .then(result => {
-                        if (result.items) {
-                            return result.items.map(r => ({
-                                startDate: new Date(r.startDate),
-                                endDate: new Date(r.endDate),
-                                name: r.name[e.calendar.options.language],
-                                description: r.description[e.calendar.options.language],
-                            }));
-                        }
-                        
-                        return [];
-                    })
-                ;
-            },*/
+            displayHeader: calendarDisplayHeader,
+            minDate: new Date(calendarYear, 0, 1),
+            maxDate: new Date(calendarYear + 1, 11, 31),
             yearChanged: function(e) {
-                $('.accordion').toggleClass('d-none');
+                $('.accordion').addClass('d-none');
+                $('#accordion_' + e.currentYear).removeClass('d-none');
             },
             mouseOnDay: function(e) {
                 if(e.events.length > 0) {
@@ -94,5 +77,7 @@ $(function() {
                 }
             }
         });
+
+        calendar.setYear(calendarYear);
     }
 });

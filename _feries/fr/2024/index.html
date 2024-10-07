@@ -1,14 +1,21 @@
 ---
 lang: fr
-accordion: false
+layout: default
+title: Calendrier des jours fériés pour 2024 au Maroc
 permalink: /fr/feries/2024/
+visible_in_holidays_accordion: false
+include_holidays_accordion: true
+holidays_years: 
+    - 2024
 ---
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title>Calendrier des jours fériés pour 2024 au Maroc - {{ site.name }}</title>
-    <meta http-equiv="refresh" content="0; URL={{ site.url }}/{{ page.lang }}/">
-    <link rel="canonical" href="{{ site.url }}/{{ page.lang }}/">
-</head>
-</html>
+<div class="container px-5">
+    <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
+        <p>
+            <h1 class="titre gy-4 g-4">Calendrier des jours fériés pour {{ page.holidays_years | join: ' / ' }} au Maroc</h1>
+        </p>
+        <div data-provide="calendar" class="calendar"></div>
+    </div>
+    <hr>
+
+    {%- include holidays_accordion.html include_holidays_accordion=page.include_holidays_accordion years=page.holidays_years -%}
+</div>

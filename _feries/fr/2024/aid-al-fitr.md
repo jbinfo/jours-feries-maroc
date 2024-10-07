@@ -6,7 +6,8 @@ title: Aïd Al Fitr
 description: Aïd Al Fitr est la fête musulmane marquant la rupture du jeûne du mois de ramadan. Elle est célébrée le premier jour du mois de chawwal.
 permalink: /fr/feries/2024/:title:output_ext
 startDate: 2024-04-10
-endDate: 2024-04-11
+endDate: 2024-04-12
+privateEndDate: 2024-04-11
 publicEndDate: 2024-04-12
 ---
 **La Fête de l'Aïd al-Fitr au Maroc : Célébration de la spiritualité et des traditions ancrées**

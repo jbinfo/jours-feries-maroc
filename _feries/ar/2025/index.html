@@ -1,14 +1,20 @@
 ---
 lang: ar
-accordion: false
+layout: default
+title: العطل الرسمية لسنة 2025 بالمغرب
 permalink: /ar/feries/2025/
+visible_in_holidays_accordion: false
+include_holidays_accordion: true
+holidays_years: 
+    - 2025
 ---
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <title> لائحة العطل الرسمية لسنة 2025 في المغرب - {{ site.name }}</title>
-    <meta http-equiv="refresh" content="0; URL={{ site.url }}/{{ page.lang }}/">
-    <link rel="canonical" href="{{ site.url }}/{{ page.lang }}/">
-</head>
-</html>
+<div class="container px-5">
+    <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
+        <p>
+            <h1 class="titre gy-4 g-4">العطل الرسمية لسنة {{ page.holidays_years | join: ' / ' }}  بالمغرب</h1>
+        </p>
+        <div data-provide="calendar" class="calendar"></div>
+    </div>
+    <hr>
+    {%- include holidays_accordion.html include_holidays_accordion=page.include_holidays_accordion years=page.holidays_years -%}
+</div>

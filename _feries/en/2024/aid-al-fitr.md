@@ -6,7 +6,9 @@ title: Eid Al Fitr
 description: Eid Al Fitr is the Muslim holiday marking the breaking of the fast in the month of Ramadan. It is celebrated on the first day of the month of Shawwal.
 permalink: /en/feries/2024/:title:output_ext
 startDate: 2024-04-10
-endDate: 2024-04-11
+endDate: 2024-04-12
+privateEndDate: 2024-04-11
+publicEndDate: 2024-04-12
 ---
 **Eid al-Fitr in Morocco: A Celebration of Spirituality and Tradition**
 

@@ -6,7 +6,9 @@ title: عيد الفطر
 description: عيد الفطر هو عيد المسلمين بمناسبة الإفطار في شهر رمضان. ويحتفل به في اليوم الأول من شهر شوال.
 permalink: /ar/feries/2024/:title:output_ext
 startDate: 2024-04-10
-endDate: 2024-04-11
+endDate: 2024-04-12
+privateEndDate: 2024-04-11
+publicEndDate: 2024-04-12
 ---
 **عيد الفطر في المغرب: احتفال بالروحانية والتقاليد العريقة**
 

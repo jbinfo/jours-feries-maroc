@@ -100,24 +100,37 @@
         {%- if page.lang != 'en' -%}
             <script src="/js/js-year-calendar.{{ page.lang }}.js" defer></script>
         {%- endif -%}
-        
+
         <script>
             const holidays = [
-                {%- if page.url == '/fr/' or page.url == '/ar/' or page.url == '/' or page.url == '/en/' -%}
-                    {%- assign feries = site.feries | where:"lang",page.lang -%}
+                {%- assign feries = site.feries | where:"lang",page.lang -%}
+                {%- for year in page.holidays_years -%}
                     {%- for item in feries -%}
-                        {%- assign publicEndDate = '""' -%}
-                        
-                        {%- if item.publicEndDate -%}
-                            {%- assign publicEndDate = "new Date('" | append: item.endDate | append: "')" -%}
+                        {%- if item.path contains year -%}
+                            {%- assign publicEndDate = '""' -%}
+                            {%- assign privateEndDate = '""' -%}
+                
+                            {%- if item.publicEndDate -%}
+                                {%- assign publicEndDate = "new Date('" | append: item.publicEndDate | append: "')" -%}
+                            {%- endif -%}
+                
+                            {%- if item.privateEndDate -%}
+                                {%- assign privateEndDate = "new Date('" | append: item.privateEndDate | append: "')" -%}
+                            {%- endif -%}
+                
+                            {"startDate": new Date('{{ item.startDate }}'), "endDate": new Date('{{ item.endDate }}'), "privateEndDate": {{ privateEndDate }}, "publicEndDate": {{ publicEndDate }}, "name": "{{ item.title }}", "description": "{{ item.description }}", "url": "{{ item.url }}"}
+                            {%- unless forloop.last -%},{%- endunless -%}
                         {%- endif -%}
-
-                        {"startDate": new Date('{{ item.startDate }}'), "endDate": new Date('{{ item.endDate }}'), "publicEndDate": {{ publicEndDate }}, "name": "{{ item.title }}", "description": "{{ item.description }}", "url": "{{ item.url }}"}
-                        {%- unless forloop.last -%},{%- endunless -%}
                     {%- endfor -%}
-                {%- endif -%}
+                {%- endfor -%}
             ];
+
+            {%- if page.holidays_years -%}
+                const calendarDisplayHeader = {% if page.holidays_years.size > 1 %}true{% else %}false{%- endif -%};
+                const calendarYear = {{ page.holidays_years[0] }};
+            {%- endif -%}
         </script>
+        
         <!-- Core theme JS-->
         <script src="/js/scripts.js" defer></script>
         {%- if jekyll.environment != "development" -%}
