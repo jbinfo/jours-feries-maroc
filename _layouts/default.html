@@ -12,9 +12,9 @@
                 {{ site.title[page.lang] }} | {{ site.name }}
             {%- else -%}                
                 {%- if page.lang == 'ar' -%}
-                    {{ site.name }} - {{ page.title }}{%- if page.startDate %} {{ page.startDate | date: '%Y' }}{%- endif %}
+                    {{ site.name }} - {{ site.countries['ma'][page.lang] }}: {{ page.title }}{%- if page.startDate %} {{ page.startDate | date: '%Y' }}{%- endif %}
                 {%- else -%}
-                    {{ page.title }}{%- if page.startDate %} {{ page.startDate | date: '%Y' }}{%- endif %} - {{ site.name }}
+                {{ site.countries['ma'][page.lang] }}: {{ page.title }}{%- if page.startDate %} {{ page.startDate | date: '%Y' }}{%- endif %} - {{ site.name }}
                 {%- endif -%}
             {%- endif -%}
         </title>
