@@ -45,6 +45,12 @@ locales:
   en: en_US
   fr: fr_FR
 
+countries:
+  ma:
+    fr: Maroc
+    en: Morocco
+    ar: المغرب
+
 languages: ['ar', 'en', 'fr']
 default_language: fr
 

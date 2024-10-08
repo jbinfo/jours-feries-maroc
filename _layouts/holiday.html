@@ -4,7 +4,7 @@ layout: default
 <div class="container px-5">
     <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
         <div class="col-12">
-            <h1 class="bd-title mt-5" id="content">{{ page.title }} {{ page.startDate | date: '%Y' }}</h1>
+            <h1 class="bd-title mt-5" id="content">{{ site.countries['ma'][page.lang] }}: {{ page.title }} {{ page.startDate | date: '%Y' }}</h1>
             <p class="lead mb-4">
                 {%- if page.lang == 'fr' -%}
                     <span>
@@ -40,10 +40,24 @@ layout: default
             </p>
             
             {%- for static_file in site.static_files -%}
-                {%- if static_file.path contains page.slug -%}
-                    <img src="{{ static_file.path }}" class="img-fluid mb-3" alt="{{ page.title }} {{ page.startDate | date: '%Y' }}">
+                {% assign imgPath = page.slug | append: '.'  | append: page.lang | append: '.webp' %}
+                {%- if static_file.path contains imgPath -%}
+                    {%- capture imgTag -%}
+                        <img src="{{ static_file.path }}" class="img-fluid mb-3" alt="{{ page.title }} - {{ site.countries['ma'][page.lang] }} - {{ page.startDate | date: '%Y' }}">
+                    {%- endcapture -%}
                 {%- endif -%}
             {%- endfor -%}
+
+            {%- if imgTag -%}
+                {{- imgTag -}}
+            {%- else -%}
+                {%- for static_file in site.static_files -%}
+                    {% assign imgPath = page.slug | append: '.webp' %}
+                    {%- if static_file.path contains imgPath -%}
+                        <img src="{{ static_file.path }}" class="img-fluid mb-3" alt="{{ page.title }} {{ page.startDate | date: '%Y' }}">
+                    {%- endif -%}
+                {%- endfor -%}
+            {%- endif -%}
             
             {{ content }}
         </div>
