@@ -35,30 +35,37 @@ layout: default
                 {%- endif -%}
             </p>
 
-            <p>
+            <p class="fw-lighter">
                 {{ page.description }}
             </p>
-            
-            {%- for static_file in site.static_files -%}
-                {% assign imgPath = page.slug | append: '.'  | append: page.lang | append: '.webp' %}
-                {%- if static_file.path contains imgPath -%}
-                    {%- capture imgTag -%}
-                        <img src="{{ static_file.path }}" class="img-fluid mb-3" alt="{{ page.title }} - {{ site.countries['ma'][page.lang] }} - {{ page.startDate | date: '%Y' }}">
-                    {%- endcapture -%}
-                {%- endif -%}
-            {%- endfor -%}
-
-            {%- if imgTag -%}
-                {{- imgTag -}}
-            {%- else -%}
+            {%- if page.image -%}
                 {%- for static_file in site.static_files -%}
-                    {% assign imgPath = page.slug | append: '.webp' %}
-                    {%- if static_file.path contains imgPath -%}
-                        <img src="{{ static_file.path }}" class="img-fluid mb-3" alt="{{ page.title }} {{ page.startDate | date: '%Y' }}">
+                    {%- if static_file.path contains page.image -%}
+                        <img src="{{ static_file.path }}" class="img-fluid mb-3" alt="{{ page.title }} - {{ site.countries['ma'][page.lang] }} - {{ page.startDate | date: '%Y' }}">
                     {%- endif -%}
                 {%- endfor -%}
+            {%- else -%}
+                {%- for static_file in site.static_files -%}
+                    {% assign imgPath = page.slug | append: '.'  | append: page.lang | append: '.webp' %}
+                    {%- if static_file.path contains imgPath -%}
+                        {%- capture imgTag -%}
+                            <img src="{{ static_file.path }}" class="img-fluid mb-3" alt="{{ page.title }} - {{ site.countries['ma'][page.lang] }} - {{ page.startDate | date: '%Y' }}">
+                        {%- endcapture -%}
+                    {%- endif -%}
+                {%- endfor -%}
+
+                {%- if imgTag -%}
+                    {{- imgTag -}}
+                {%- else -%}
+                    {%- for static_file in site.static_files -%}
+                        {% assign imgPath = page.slug | append: '.webp' %}
+                        {%- if static_file.path contains imgPath -%}
+                            <img src="{{ static_file.path }}" class="img-fluid mb-3" alt="{{ page.title }} - {{ site.countries['ma'][page.lang] }} - {{ page.startDate | date: '%Y' }}">
+                        {%- endif -%}
+                    {%- endfor -%}
+                {%- endif -%}
             {%- endif -%}
-            
+
             {{ content }}
         </div>
     </div>
