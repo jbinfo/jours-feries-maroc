@@ -9,7 +9,7 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header" id="flush-heading-{{ forloop.index }}">
                             <button class="accordion-button collapsed {% if page.lang == 'ar' %}me-auto{% endif %}" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse-{{ forloop.index }}" aria-expanded="false" aria-controls="flush-collapse-{{ forloop.index }}">
-                                {{ item.title }}
+                                {{ item.title | remove: '-' | strip }}
 
                                 {%- assign startDate = item.startDate | date: '%s' -%}
                                 {%- if startDate > todayDate -%}

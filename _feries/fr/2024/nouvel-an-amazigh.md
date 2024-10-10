@@ -1,7 +1,7 @@
 ---
 lang: fr
 layout: holiday
-title: Nouvel an Amazigh
+title: Nouvel an Amazigh 2974 -
 description: Yennayer marque le Premier jour de l'année selon le calendrier agraire amazigh, remontant à l'Antiquité. Célébré entre le 12 et les 14 janvier de chaque année, le nouvel an Amazigh correspond au calendrier julien, décalé de treize jours par rapport au calendrier grégorien.
 image: nouvel-an-amazigh-2024.webp
 permalink: /fr/feries/2024/:title:output_ext

@@ -1,7 +1,7 @@
 ---
 lang: ar
 layout: holiday
-title: رأس السنة الأمازيغية
+title: رأس السنة الأمازيغية 2974 -
 description: يصادف اليوم الأول من السنة حسب التقويم الزراعي الأمازيغي الذي يعود إلى العصور القديمة. يحتفل برأس السنة الأمازيغية في الفترة ما بين 12 و14 يناير من كل عام.
 image: nouvel-an-amazigh-2024.webp
 permalink: /ar/feries/2024/:title:output_ext
