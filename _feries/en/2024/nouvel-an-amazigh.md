@@ -3,6 +3,7 @@ lang: en
 layout: holiday
 title: Amazigh New Year
 description: Yennayer marks the first day of the year according to the Amazigh agrarian calendar, dating back to Antiquity. Celebrated between January 12 and 14 each year, the Amazigh New Year corresponds to the Julian calendar, offset by thirteen days compared to the Gregorian calendar.
+image: nouvel-an-amazigh-2024.webp
 permalink: /en/feries/2024/:title:output_ext
 startDate: 2024-01-14
 endDate: 2024-01-14

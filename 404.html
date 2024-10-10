@@ -1,0 +1,67 @@
+---
+layout: default
+lang: fr
+title: Page non trouvée | Page Not Found | الصفحة غير موجودة
+---
+<script>
+    // Function to get the browser's default language
+    function getBrowserLanguage() {
+        return navigator.language || navigator.userLanguage;
+    }
+
+    // Function to display the correct message based on the browser's language
+    function displayNotFoundMessage() {
+        const language = getBrowserLanguage();
+        const messageContainer = document.getElementById("not-found-message");
+
+        let message = "";
+
+        switch (language) {
+            // French locales (All countries)
+            case 'fr':
+            case 'fr-FR':
+            case 'fr-BE':
+            case 'fr-CA':
+            case 'fr-CH':
+            case 'fr-LU':
+            case 'fr-MC':
+                message = "Page non trouvée. Il semble que cette page soit introuvable ou ait été supprimée.";
+                break;
+                
+            // Arabic locales (All countries)
+            case 'ar':
+            case 'ar-SA':
+            case 'ar-AE':
+            case 'ar-BH':
+            case 'ar-DZ':
+            case 'ar-EG':
+            case 'ar-IQ':
+            case 'ar-JO':
+            case 'ar-KW':
+            case 'ar-LB':
+            case 'ar-LY':
+            case 'ar-MA':
+            case 'ar-OM':
+            case 'ar-QA':
+            case 'ar-SY':
+            case 'ar-TN':
+            case 'ar-YE':
+                message = "الصفحة غير موجودة. يبدو أن هذه الصفحة غير متوفرة أو قد تم حذفها.";
+                break;
+            
+            // Default to English for other languages
+            default:
+                message = "Page Not Found. It looks like this page doesn't exist or has been removed.";
+        }
+
+        messageContainer.textContent = message;
+    }
+
+    // Run the function when the page loads
+    window.onload = displayNotFoundMessage;
+</script>
+<div class="container px-5">
+    <div class="row gx-5 align-items-center justify-content-center justify-content-lg-between">
+        <p class="fs-3 gy-4 g-4" id="not-found-message"></p>
+    </div>
+</div>

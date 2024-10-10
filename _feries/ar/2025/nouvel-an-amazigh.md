@@ -3,6 +3,7 @@ lang: ar
 layout: holiday
 title: رأس السنة الأمازيغية
 description: يصادف اليوم الأول من السنة حسب التقويم الزراعي الأمازيغي الذي يعود إلى العصور القديمة. يحتفل برأس السنة الأمازيغية في الفترة ما بين 12 و14 يناير من كل عام.
+image: nouvel-an-amazigh-2025.webp
 permalink: /ar/feries/2025/:title:output_ext
 startDate: 2025-01-14
 endDate: 2025-01-14
