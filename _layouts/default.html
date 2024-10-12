@@ -59,12 +59,19 @@
             {%- endif -%}
         ">
         <meta property="og:description" content="{%- if page.description -%}{{ page.description }}{%- else -%}{{ site.description[page.lang] }}{%- endif -%}">
-        <!-- {%- for static_file in site.static_files -%}
-            {%- if static_file.path contains page.slug -%}
-                <meta property="og:image" content="{{ site.url }}{{ static_file.path }}" />
-                <link rel="preload" href="{{ site.url }}{{ static_file.path }}" as="image" />
+        {%- assign imgFound = 0 -%}
+        {%- for static_file in site.static_files -%}
+            {%- assign imgSlug = page.slug -%}
+
+            {%- if page.image -%}
+                {%- assign imgSlug = page.image -%}
             {%- endif -%}
-        {%- endfor -%}-->
+
+            {%- if static_file.path contains imgSlug and imgFound == 0 -%}
+                {%- assign imgFound = 1 -%}
+                <meta property="og:image" content="{{ site.url }}{{ static_file.path }}" />
+            {%- endif -%}
+        {%- endfor -%}
         
         <meta property="og:url" content="{{ site.url }}{{ page.url }}">
         <meta property="og:site_name" content="{{ site.slogan[page.lang] }} - {{ site.name }}">
