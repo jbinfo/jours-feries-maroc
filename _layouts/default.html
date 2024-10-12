@@ -124,10 +124,9 @@
         
         {%- if page.include_calendar -%}
             <script src="https://cdn.jsdelivr.net/npm/custom-js-year-calendar@2.0.0/dist/js-year-calendar.min.js" defer></script>
-        {%- endif -%}
-
-        {%- if page.lang != 'en' -%}
-            <script src="/js/js-year-calendar.{{ page.lang }}.js" defer></script>
+            {%- if page.lang != 'en' -%}
+                <script src="/js/js-year-calendar.{{ page.lang }}.js" defer></script>
+            {%- endif -%}
         {%- endif -%}
 
         <script>
