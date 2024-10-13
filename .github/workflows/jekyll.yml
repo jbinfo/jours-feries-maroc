@@ -48,7 +48,7 @@ jobs:
         env:
           JEKYLL_ENV: production
       - name: Genarate Responsive Images
-        uses: jbinfo/jekyll-responsive-images@89f161979535897952a5620671bd1c65eb118aee
+        uses: jbinfo/jekyll-responsive-images@bc3965cfc70dfc4e5e4912a16bfdfdb4767df65a
       - name: Gzip html / css / js / webp
         run: find ./_site \( -name '*.html' -o -name '*.css' -o -name '*.js' -o -name '*.webp' \) -print0 | xargs -0 gzip -9 -kv
       - name: Upload artifact
