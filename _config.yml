@@ -57,9 +57,17 @@ default_language: fr
 collections:
   feries:
     output: true
+  
+jekyll-minifier:
+  remove_multi_spaces: true
+  remove_comments: true
+  remove_intertag_spaces: true
+  uglifier_args:
+    harmony: true
 
 plugins:
   - jekyll-sitemap
+  - jekyll-minifier
   
 # Exclude from processing.
 # The following items will not be processed, by default.
