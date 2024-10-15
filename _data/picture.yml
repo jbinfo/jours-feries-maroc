@@ -25,9 +25,9 @@ presets:
       img: 'class="img-fluid mb-3" fetchpriority="high"'
 
   cardcover:
-    base_width: 400 # How wide the 1x image should be.
+    base_width: 300 # How wide the 1x image should be.
     pixel_ratios: [1] # Which multipliers to target.
-    fallback_width: 400 # The default is 800, which is probably too big.
+    fallback_width: 300 # The default is 800, which is probably too big.
     formats: [webp]
     link_source: false
     format_quality:
