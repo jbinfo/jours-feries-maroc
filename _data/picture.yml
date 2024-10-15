@@ -4,11 +4,23 @@ presets:
     formats: [webp]
     widths: [200, 400, 800, 1044]
     link_source: true
+    format_quality:
+      webp: 
+        200: 10
+        400: 10
+        800: 60
+        1044: 75
   
   holiday_article:
     formats: [webp]
     widths: [200, 400, 800, 1044]
     link_source: false
+    format_quality:
+      webp: 
+        200: 10
+        400: 10
+        800: 60
+        1044: 75
     attributes:
       img: 'class="img-fluid mb-3" fetchpriority="high"'
 
