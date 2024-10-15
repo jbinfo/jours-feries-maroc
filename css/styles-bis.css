@@ -40,3 +40,6 @@ main .bg {
 p.lead time {
     font-weight: 600;
 }
+.card-title a {
+    text-decoration: none;
+}

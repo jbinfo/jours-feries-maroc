@@ -1,0 +1,27 @@
+presets:
+  default:
+    formats: [webp]
+    widths: [200, 400, 800, 1044]
+    link_source: true
+  
+  holiday_article:
+    formats: [webp]
+    widths: [200, 400, 800, 1044]
+    link_source: false
+    attributes:
+      img: 'class="img-fluid mb-3"'
+
+  cardcover:
+    base_width: 400 # How wide the 1x image should be.
+    pixel_ratios: [1] # Which multipliers to target.
+    fallback_width: 400 # The default is 800, which is probably too big.
+    formats: [webp]
+    link_source: false
+    attributes:
+      img: 'class="card-img-top"'
+
+  lazy:
+    markup: data_auto
+    widths: [200, 400, 800, 1044]
+    link_source: true
+    noscript: true

@@ -38,10 +38,14 @@ layout: default
             <p class="fw-lighter">
                 {{ page.description }}
             </p>
+            {%- capture imgAlt -%}
+                {{ page.title }} - {{ site.countries['ma'][page.lang] }} - {{ page.startDate | date: '%Y' }}
+            {%- endcapture -%}
+
             {%- if page.image -%}
                 {%- for static_file in site.static_files -%}
                     {%- if static_file.path contains page.image -%}
-                        <img src="{{ static_file.path }}" class="img-fluid mb-3" alt="{{ page.title }} - {{ site.countries['ma'][page.lang] }} - {{ page.startDate | date: '%Y' }}">
+                        {%- picture holiday_article "{{ static_file.path }}" --alt {{ imgAlt }} -%}
                     {%- endif -%}
                 {%- endfor -%}
             {%- else -%}
@@ -49,18 +53,19 @@ layout: default
                     {% assign imgPath = page.slug | append: '.'  | append: page.lang | append: '.webp' %}
                     {%- if static_file.path contains imgPath -%}
                         {%- capture imgTag -%}
-                            <img src="{{ static_file.path }}" class="img-fluid mb-3" alt="{{ page.title }} - {{ site.countries['ma'][page.lang] }} - {{ page.startDate | date: '%Y' }}">
+                            {%- picture holiday_article "{{ static_file.path }}" --alt {{ imgAlt }} -%}
                         {%- endcapture -%}
                     {%- endif -%}
                 {%- endfor -%}
 
                 {%- if imgTag -%}
                     {{- imgTag -}}
+                    {%- assign imgPath = imgTag -%}
                 {%- else -%}
                     {%- for static_file in site.static_files -%}
                         {% assign imgPath = page.slug | append: '.webp' %}
                         {%- if static_file.path contains imgPath -%}
-                            <img src="{{ static_file.path }}" class="img-fluid mb-3" alt="{{ page.title }} - {{ site.countries['ma'][page.lang] }} - {{ page.startDate | date: '%Y' }}">
+                            {%- picture holiday_article "{{ static_file.path }}" --alt {{ imgAlt }} -%}
                         {%- endif -%}
                     {%- endfor -%}
                 {%- endif -%}

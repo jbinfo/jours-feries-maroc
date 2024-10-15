@@ -1,0 +1,87 @@
+{%- assign todayDate = 'now' | date: '%s' -%}
+{%- assign feries = site.feries | where:"lang",page.lang | sort: "startDate" -%}
+{%- for year in include.years -%}
+    <div class="holidays-cards d-none{% if forloop.first %}{% endif %}" id="holidays_{{ year }}">
+        <h2 class="gy-4 g-4">
+            {%- if page.lang == 'fr' -%}
+                Les des fêtes nationales, religieuses et jours fériés au Maroc {{ year }}
+            {%- endif -%}
+            {%- if page.lang == 'en' -%} 
+                National, religious and public holidays in Morocco {{ year }}
+            {%- endif -%}
+            {%- if page.lang == 'ar' -%}
+            العطل الوطنية والأعياد الدينية والرسمية في المغرب {{ year }}
+            {%- endif -%}
+        </h2>
+        {%- for item in feries -%}
+            {%- if item.path contains year -%}
+                {%- if item.visible_in_holidays_accordion == false -%}
+                {%- else -%}
+                    <div class="card w-25 mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                {{ item.title | remove: '-' | strip }}
+                                {%- assign startDate = item.startDate | date: '%s' -%}
+                                {%- if startDate > todayDate -%}
+                                    <i class="bi bi-hourglass-top ms-2 me-2 opacity-50"></i>
+                                {%- else -%}
+                                    <i class="bi bi-check ms-2 me-2 opacity-50"></i>
+                                {%- endif -%}
+                            </h5>
+                            <p class="card-text">
+                                <span class="badge bg-success">
+                                    {%- if page.lang == 'fr' -%}
+                                        {% if item.startDate != item.endDate %}Début: {% endif %}<time datetime="{{ item.startDate }}">{{ item.startDate | date: "%d / %m / %Y" }}</time>
+                                    {%- endif -%}
+                                    {%- if page.lang == 'en' -%}
+                                        {% if item.startDate != item.endDate %}From: {% endif %}<time datetime="{{ item.startDate }}">{{ item.startDate | date: "%b %d, %Y" }}</time>
+                                    {%- endif -%}
+                                    {%- if page.lang == 'ar' -%}
+                                        {% if item.startDate != item.endDate %}من: {% endif %}<time datetime="{{ item.startDate }}">{{ item.startDate | date: "%d / %m / %Y" }}</time>
+                                    {%- endif -%}
+                                </span>
+                                {% if item.startDate != item.endDate -%}
+                                    <span class="badge bg-dark">
+                                        {%- if page.lang == 'fr' -%}
+                                            Fin: <time datetime="{{ item.endDate }}">{{ item.endDate | date: "%d / %m / %Y" }}</time>
+                                        {%- endif -%}
+                                        {%- if page.lang == 'en' -%}
+                                            To: <time datetime="{{ item.endDate }}">{{ item.endDate | date: "%b %d, %Y" }}</time>
+                                        {%- endif -%}
+                                        {%- if page.lang == 'ar' -%}
+                                            إلى: <time datetime="{{ item.endDate }}">{{ item.endDate | date: "%d / %m / %Y" }}</time>
+                                        {%- endif -%}
+                                    </span>
+                                {% endif -%}
+                            </p>
+                            <p class="card-text">
+                                {{ item.description }}
+                            </p>
+                            {%- if page.lang == 'fr' -%}
+                                Lire plus sur cette 
+                            {% endif -%}
+                            {%- if page.lang == 'en' -%}
+                                Read more on this 
+                            {% endif -%}
+                            {%- if page.lang == 'ar' -%}
+                                إقرأ المزيد في هذه 
+                            {% endif -%}
+                            <a href="{{ item.url }}"  class="btn btn-primary" title="{{ item.title }} {{ item.endDate | date: '%Y' }}" class="">
+                                {%- if page.lang == 'fr' -%}
+                                    article 
+                                {%- endif -%}
+                                {%- if page.lang == 'en' -%}
+                                    article 
+                                {%- endif -%}
+                                {%- if page.lang == 'ar' -%}
+                                    المقالة 
+                                {%- endif -%}
+                            </a>
+                        </div>
+                    </div>
+                {%- endif -%}
+            {%- endif -%}
+        {%- endfor -%}
+    </div>
+{%- endfor -%}
+          
