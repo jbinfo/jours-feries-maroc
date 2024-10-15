@@ -21,8 +21,8 @@ main .bg {
     bottom: 0;
     left: 0;
     right: 0;
-    background: url(../assets/img/bg-min.webp) center center;
-    opacity: 0.03;
+    background: url(../assets/img/bg-min-3.webp) center center;
+    opacity: 0.02;
 }
 .calendar .months-container .month-container {
     padding-bottom: 14px;
