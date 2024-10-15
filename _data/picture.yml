@@ -8,8 +8,8 @@ presets:
       webp: 
         200: 10
         400: 10
-        800: 60
-        1044: 75
+        800: 80
+        1044: 90
   
   holiday_article:
     formats: [webp]
@@ -19,22 +19,22 @@ presets:
       webp: 
         200: 10
         400: 10
-        800: 60
-        1044: 75
+        800: 80
+        1044: 90
     attributes:
-      img: 'class="img-fluid mb-3" fetchpriority="high"'
+      img: 'class="img-fluid mb-3 lazyload"'
 
   cardcover:
-    base_width: 300 # How wide the 1x image should be.
+    base_width: 400 # How wide the 1x image should be.
     pixel_ratios: [1] # Which multipliers to target.
-    fallback_width: 300 # The default is 800, which is probably too big.
+    fallback_width: 400 # The default is 800, which is probably too big.
     formats: [webp]
     link_source: false
     format_quality:
       webp: 
         400: 10
     attributes:
-      img: 'class="card-img-top" loading="lazy"'
+      img: 'class="card-img-top lazyload"'
 
   lazy:
     markup: data_auto
