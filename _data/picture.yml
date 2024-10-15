@@ -10,7 +10,7 @@ presets:
     widths: [200, 400, 800, 1044]
     link_source: false
     attributes:
-      img: 'class="img-fluid mb-3"'
+      img: 'class="img-fluid mb-3" fetchpriority="high"'
 
   cardcover:
     base_width: 400 # How wide the 1x image should be.
@@ -22,7 +22,7 @@ presets:
       webp: 
         400: 10
     attributes:
-      img: 'class="card-img-top"'
+      img: 'class="card-img-top" loading="lazy"'
 
   lazy:
     markup: data_auto

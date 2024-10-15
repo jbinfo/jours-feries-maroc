@@ -41,7 +41,7 @@ $(function() {
             minDate: new Date(calendarYear, 0, 1),
             maxDate: new Date(calendarYear + 1, 11, 31),
             yearChanged: function(e) {
-                $('holidays-cards').addClass('d-none');
+                $('.holidays-cards').addClass('d-none');
                 $('#holidays_' + e.currentYear).removeClass('d-none');
             },
             mouseOnDay: function(e) {
