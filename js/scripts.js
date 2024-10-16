@@ -36,7 +36,7 @@ window.onload = function () {
             var currentYear = new Date().getFullYear();
             calendar = new Calendar('.calendar', {
                 dataSource: holidays,
-                language: 'fr', // document.documentElement.lang,
+                language: document.documentElement.lang,
                 style: 'background',
                 displayHeader: calendarDisplayHeader,
                 minDate: new Date(calendarYear, 0, 1),
