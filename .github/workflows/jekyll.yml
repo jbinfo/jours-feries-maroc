@@ -47,6 +47,8 @@ jobs:
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v5
+      - name: Set Env variables in _config.yml
+        run: echo "enable_ads: ${{ vars.ENABLE_ADS }}" >> _config.yml
       - name: Build with Jekyll
         # Outputs to the './_site' directory by default
         run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
