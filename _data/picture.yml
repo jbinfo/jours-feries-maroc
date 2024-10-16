@@ -23,7 +23,7 @@ presets:
         800: 70
         1044: 70
     attributes:
-      img: 'class="img-fluid mb-3 lazyload" width="100%"'
+      img: 'class="img-fluid mb-3 lazyload" width="100%" loading="lazy"'
 
   cardcover:
     markup: data_auto
@@ -36,7 +36,7 @@ presets:
       webp: 
         400: 10
     attributes:
-      img: 'class="card-img-top lazyload" width="100%"'
+      img: 'class="card-img-top lazyload" width="100%" loading="lazy"'
 
   lazy:
     markup: data_auto
