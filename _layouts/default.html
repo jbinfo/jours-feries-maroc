@@ -126,7 +126,7 @@
         <script src="/js/bootstrap.bundle.min.js" async></script>
         
         {%- if page.include_calendar -%}
-            <script src="/js/js-year-calendar.min.js" async></script>
+            <script src="/js/js-year-calendar.min.js" defer></script>
             {%- if page.lang != 'en' -%}
                 <script src="/js/js-year-calendar.{{ page.lang }}.js" defer></script>
             {%- endif -%}
