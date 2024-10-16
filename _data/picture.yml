@@ -2,26 +2,26 @@
 presets:
   default:
     formats: [webp]
-    widths: [200, 400, 800, 1044]
+    widths: [200, 400, 800, 1120]
     link_source: true
     format_quality:
       webp: 
         200: 10
         400: 10
         800: 80
-        1044: 90
+        1120: 90
   
   holiday_article:
     markup: data_auto
     formats: [webp]
-    widths: [200, 400, 800, 1044]
+    widths: [200, 400, 800, 1120]
     link_source: false
     format_quality:
       webp: 
         200: 10
         400: 10
-        800: 70
-        1044: 70
+        800: 100
+        1120: 100
     attributes:
       img: 'class="img-fluid mb-3 lazyload" width="100%" loading="lazy"'
 
@@ -40,6 +40,6 @@ presets:
 
   lazy:
     markup: data_auto
-    widths: [200, 400, 800, 1044]
+    widths: [200, 400, 800, 1120]
     link_source: true
     noscript: true
