@@ -43,3 +43,7 @@ p.lead time {
 .card-title a {
     text-decoration: none;
 }
+img.card-img-top {
+    height: auto;
+    width: 100%;
+}
