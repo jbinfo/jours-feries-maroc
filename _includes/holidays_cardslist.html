@@ -2,7 +2,7 @@
 {%- assign feries = site.feries | where:"lang",page.lang | sort: "startDate" -%}
 {%- for year in include.years -%}
     <div class="holidays-cards d-none{% if forloop.first %}{% endif %}" id="holidays_{{ year }}">
-        <h2 class="gy-4 g-4">
+        <h2 class="my-4">
             {%- if page.lang == 'fr' -%}
                 Les des fêtes nationales, religieuses et jours fériés au Maroc {{ year }}
             {%- endif -%}
