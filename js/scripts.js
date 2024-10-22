@@ -33,7 +33,7 @@ window.onload = function () {
     
         if (holidays.length > 0) {
             Calendar.colors = ['#83CDFB', '#9CB703', '#F5BB00', '#FF8A7A', '#B56CE2', '#45A597'];
-            var currentYear = new Date().getFullYear();
+            let currentYear = new Date().getFullYear();
             calendar = new Calendar('.calendar', {
                 dataSource: holidays,
                 language: document.documentElement.lang,
@@ -72,6 +72,11 @@ window.onload = function () {
                     }
                 },
                 renderEnd: function(e) {
+                    if (e.currentYear == currentYear) {
+                        let currentMonth = new Date().getMonth();
+                        $('div.month-container[data-month-id="'+ currentMonth +'"]').css('border', '1px solid rgba(0,0,0,.25)')
+                    }
+
                     if (e.calendar.options.language == 'ar') {
                         $(e.target).find('.calendar-header').attr('dir', 'rtl');
                         $(e.target).find('.months-container').attr('dir', 'rtl');
