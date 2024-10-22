@@ -74,7 +74,13 @@ window.onload = function () {
                 renderEnd: function(e) {
                     if (e.currentYear == currentYear) {
                         let currentMonth = new Date().getMonth();
-                        $('div.month-container[data-month-id="'+ currentMonth +'"]').css('border', '1px solid rgba(0,0,0,.25)')
+                        let currentDay = new Date().getDate();
+                        $('div.month-container[data-month-id="'+ currentMonth +'"]')
+                            .css('border', '1px solid rgba(0,0,0,.25)')
+                            .find('td:contains('+ currentDay +')')
+                            .css('background-color', '#060606')
+                            .css('color', '#fff')
+                            .css('font-weight', 'bold')
                     }
 
                     if (e.calendar.options.language == 'ar') {
